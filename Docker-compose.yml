@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  server:
+    build: .
+    volumes:
+      - .:/app
+    command: python server.py
+    networks:
+      fl_network:
+        ipv4_address: 10.5.0.5
+
+  node1:
+    build: .
+    volumes:
+      - .:/app
+    command: python node.py
+    networks:
+      fl_network:
+        ipv4_address: 10.5.0.6
+
+  node2:
+    build: .
+    volumes:
+      - .:/app
+    command: python node.py
+    networks:
+      fl_network:
+        ipv4_address: 10.5.0.7
+
+  node3:
+    build: .
+    volumes:
+      - .:/app
+    command: python node.py
+    networks:
+      fl_network:
+        ipv4_address: 10.5.0.8
+
+networks:
+  fl_network:
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
